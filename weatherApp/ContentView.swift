@@ -27,10 +27,10 @@ struct ContentView: View {
         ZStack {
             LinearGradient(
                 gradient: Gradient(stops: [
-                    .init(color: Color(red: 71/255, green: 104/255, blue: 155/255), location: 0.00),
-                    .init(color: Color(red: 83/255, green: 115/255, blue: 169/255), location: 0.45),
-                    .init(color: Color(red: 139/255, green: 142/255, blue: 176/255), location: 0.80),
-                    .init(color: Color(red: 156/255, green: 146/255, blue: 175/255), location: 1.00)
+                    .init(color: Color(red: 34/255, green: 58/255, blue: 99/255), location: 0.00),
+                    .init(color: Color(red: 85/255, green: 91/255, blue: 132/255), location: 0.45),
+                    .init(color: Color(red: 117/255, green: 110/255, blue: 137/255), location: 0.80),
+                    .init(color: Color(red: 177/255, green: 142/255, blue: 129/255), location: 1.00)
                     ]),
                 startPoint: .top,
                 endPoint: .bottom

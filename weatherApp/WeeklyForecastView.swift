@@ -8,7 +8,7 @@
 import SwiftUI
 
 let Days = [
-    Day(day: "Today", high: 72, low: 48, icon: "sun.max.fill"),
+    Day(day: "Today", high: 72, low: 48, icon: "moon.stars.fill"),
     Day(day: "Thu", high: 67, low: 44, icon: "sun.max.fill"),
     Day(day: "Fri", high: 64, low: 43, icon: "sun.max.fill"),
     Day(day: "Sat", high: 63, low: 40, icon: "cloud.sun.fill"),
@@ -41,8 +41,8 @@ struct WeeklyForecastView: View {
                             .font(.system(size: 20))
                             .symbolRenderingMode(.palette)
                             .foregroundStyle(
-                                (day.icon == "cloud.sun.fill" || day.icon == "cloud.rain.fill" || day.icon == "cloud.fill" || day.icon == "cloud.bolt.rain.fill") ? .white : .yellow,
-                                (day.icon == "cloud.rain.fill" || day.icon == "cloud.bolt.rain.fill") ? .blue : .yellow
+                                (day.icon == "cloud.sun.fill" || day.icon == "cloud.rain.fill" || day.icon == "cloud.fill" || day.icon == "cloud.bolt.rain.fill") ? .white : (day.icon.contains("moon") ? .white : .yellow),
+                                (day.icon == "cloud.rain.fill" || day.icon == "cloud.bolt.rain.fill") ? .blue : (day.icon.contains("moon") ? .white : .yellow)
                             )
                         
                         Spacer()
@@ -76,7 +76,7 @@ struct WeeklyForecastView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.2))
+                .fill(.opacity(0.1))
         )
     }
 }
@@ -84,16 +84,17 @@ struct WeeklyForecastView: View {
 #Preview {
     ZStack {
         LinearGradient(
-            colors: [
-                Color(red: 0.3, green: 0.6, blue: 0.9),
-                Color(red: 0.4, green: 0.7, blue: 1.0),
-            ],
+            gradient: Gradient(stops: [
+                .init(color: Color(red: 71/255, green: 104/255, blue: 155/255), location: 0.00),
+                .init(color: Color(red: 83/255, green: 115/255, blue: 169/255), location: 0.45),
+                .init(color: Color(red: 139/255, green: 142/255, blue: 176/255), location: 0.80),
+                .init(color: Color(red: 156/255, green: 146/255, blue: 175/255), location: 1.00)
+                ]),
             startPoint: .top,
             endPoint: .bottom
         )
         .ignoresSafeArea()
         VStack{
-            HourlyForecastView()
             WeeklyForecastView()
         }
         .padding()
